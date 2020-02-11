@@ -1,0 +1,19 @@
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 20px 0;
+
+}
+
+.navbar-container img {
+    width: 150px;
+}
+
+.navbar-container button {
+    margin-left: 10px;
+}
+
+.search-input {
+    width: 600px;
+}

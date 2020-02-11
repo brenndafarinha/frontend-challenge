@@ -1,0 +1,37 @@
+.footer-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f4f4f4;
+    bottom: 0;
+    min-height: 200px;
+    padding: 60px 0;
+}
+
+.footer-container span {
+    margin-top: 10px;
+}
+
+.footer-container img {
+    width: 115px;
+    margin-bottom: 20px;
+}
+
+.footer-icons {
+    width: 45px;
+    margin-top: 10px;
+    display: inherit;
+    font-size: 20px;
+    align-items: inherit;
+    justify-content: space-between;
+    
+}
+
+.footer-icons a {
+    color: #4e71a7;
+    text-decoration: none;
+}
+
+.footer-icons a:hover {
+    opacity: 0.7;
+}
