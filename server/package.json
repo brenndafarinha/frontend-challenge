@@ -7,6 +7,7 @@
     "@turf/turf": "^5.1.6",
     "apollo-server": "^2.9.16",
     "axios": "^0.19.2",
-    "graphql": "^14.6.0"
+    "graphql": "^14.6.0",
+    "merge-graphql-schemas": "^1.7.6"
   }
 }
