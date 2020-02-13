@@ -21,3 +21,7 @@
     align-items: flex-start;
     flex-direction: column;
 }
+
+.main-content {
+    text-align: center;
+}

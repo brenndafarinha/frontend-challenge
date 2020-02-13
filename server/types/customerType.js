@@ -29,6 +29,6 @@ module.exports =  `
     }
 
     type Query {
-        getCustomers(page:Int, size:Int, region: String): Pagination
+        getCustomers(page:Int, size:Int, category: String): Pagination
     }
 `

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Radio, Typography } from 'antd'
+import { Radio, Typography, Result } from 'antd'
 import PropTypes from 'prop-types'
 import CustomerCrad from '../../components/customerCard'
 
@@ -9,11 +9,11 @@ const { Text } = Typography
 
 export default function Main(
     {
-        customers: {
-            customersData,
-            customersLoading
-        },
-        setFilter
+        data,
+        loading,
+        error,
+        categoryFilter,
+        setCategoryFilter
     }
 ) {
 
@@ -23,7 +23,8 @@ export default function Main(
                 <Text className='filter-title' strong>Filtrar por categoria:</Text>
                 <Radio.Group
                     className="filter-radio-container"
-                    onChange={e => setFilter(e.target.value)}
+                    onChange={e => setCategoryFilter(e.target.value)}
+                    value={categoryFilter || ""}
                     defaultValue='especial'
                 >
                     <Radio siz style={{ marginLeft: 0 }} value='especial'>Especial</Radio>
@@ -32,23 +33,32 @@ export default function Main(
                 </Radio.Group>
             </div>
             <div className='main-content'>
-                {customersData.map(customer => 
-                    <CustomerCrad
-                        loading={customersLoading}
-                        name={customer.fullname}
-                        address={customer.address}
-                        photo={customer.picture}
-                    />
-                )}
+                {
+                    data ? data.map(customer =>
+                        <CustomerCrad
+                            loading={loading}
+                            name={customer.fullname}
+                            address={customer.address}
+                            photo={customer.picture.medium}
+                        />
+                    )
+                        :
+                        <Result
+                            status="404"
+                            title="Nenhum usuário encontrado"
+                            subTitle="Seleciona outra categoria ou tente novamente"
+                        />
+                }
             </div>
         </div>
     )
 }
 
 Main.propTypes = {
-    customers: PropTypes.shape({
-        customersData: PropTypes.array.isRequired,
-        customersLoading: PropTypes.bool.isRequired
-    }),
+    categoryFilter: PropTypes.string.isRequired,
+    setCategoryFilter: PropTypes.func.isRequired,
+    data: PropTypes.array.isRequired,
+    loading: PropTypes.bool.isRequired,
+    error: PropTypes.object.isRequired,
     setFilter: PropTypes.func.isRequired
 }
