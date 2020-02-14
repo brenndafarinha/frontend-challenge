@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Avatar } from 'antd'
+import { Card, Avatar, Skeleton } from 'antd'
 import PropTypes from 'prop-types'
 
 const { Meta } = Card
@@ -19,10 +19,10 @@ export default function CustomerCard(
         <Card
             loading={loading}
             hoverable
-            style={{ width: 200 }}
-            cover={photo ? <img alt="example" src={photo} /> : <Avatar shape="square" icon="user" />}
+            style={{ width: 220 }}
+            cover={photo ? <img alt="example" src={photo} /> : <Skeleton avatar/>}
         >
-            <Meta title="Europe Street beat" description="www.instagram.com" />
+            <Meta title={name} description={address} />
         </Card>
     )
 }

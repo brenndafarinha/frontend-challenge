@@ -19,10 +19,10 @@ const customerQuery = gql`
           fullname,
         }
         picture{
-          medium,
-          thumbnail
+          large
         }
         location {
+          fullAddress,
           state,
           city,
           postcode,
@@ -44,18 +44,20 @@ function App() {
   const client = useApolloClient()
 
   const [searchInput, setSearchInput] = useState('')
-  const [categoryFilter, setCategoryFilter] = useState("especial")
+  const [categoryFilter, setCategoryFilter] = useState("trabalhoso")
+  const [customers, setCustomers] = useState([])
 
   const [getCustomers, {
-    data,
     loading,
     error
-  }] = useLazyQuery(customerQuery, { client })
+  }] = useLazyQuery(customerQuery, {
+    client,
+    onCompleted: data => setCustomers(data.customers.customers) 
+  })
 
-  const getCustomersQuery = (page, size, category) => getCustomers({ variables: { page: page, size: size, category: category } })
 
   useEffect(() => {
-    getCustomersQuery(1, 9, "trabalhoso")
+    getCustomers({ variables: {page: 1, size: 9, category: "trabalhoso"}})
   }, [])
 
   // useEffect(() => {
@@ -66,7 +68,8 @@ function App() {
     <div className="App">
       <NavBar setSarchInput={setSearchInput} />
       <Main
-        data={data}
+        customers={customers}
+        loading={loading}
         categoryFilter={categoryFilter}
         setCategoryFilter={setCategoryFilter}
       />
