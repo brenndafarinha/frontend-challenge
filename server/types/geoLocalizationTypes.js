@@ -5,6 +5,7 @@ module.exports = `
     }
 
     type Location {
+        fullAddress: String
         street: String
         city: String
         state: String

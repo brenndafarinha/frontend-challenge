@@ -1,6 +1,8 @@
 const turf = require('@turf/turf')
 
-const capitalize = string => string.charAt(0).toUpperCase() + string.slice(1)
+const capitalize = string => {
+    return string.trim().toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
+}
 
 const isPointInLine = (coord, lineCoord) => {
     const point = turf.point([coord.latitude, coord.longitude])
@@ -50,4 +52,10 @@ const verifyCoordinates = (coord, category) => {
 
 }
 
-module.exports = { verifyCoordinates, capitalize }
+const formatAddress = ({street, city, postcode, state}) => {
+    const re = /(^\d+)\s(.*)/
+    const formattedStreet = street.trim().replace(re, '$2, $1')
+    return `${capitalize(formattedStreet)} ${capitalize(city)} ${capitalize(state)} - CEP:${postcode}`
+}
+
+module.exports = { verifyCoordinates, capitalize, formatAddress }

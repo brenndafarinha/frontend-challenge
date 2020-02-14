@@ -1,4 +1,4 @@
-const { verifyCoordinates, capitalize } = require('./helpers')
+const { verifyCoordinates, capitalize, formatAddress } = require('./helpers')
 const axios = require('axios').default
 
 const baseURL = "https://storage.googleapis.com/juntossomosmais-code-challenge/input-frontend-apps.json"
@@ -18,6 +18,9 @@ const resolvers = {
     },
     Name: {
         fullname: (parent, _) => `${capitalize(parent.first)} ${capitalize(parent.last)}`
+    },
+    Location:{
+        fullAddress: (parent, _) => formatAddress(parent)
     }
 }
 
