@@ -1,6 +1,7 @@
 module.exports = `
     type Pagination {
         customers: [Customer]
-        totalPages: Int
+        totalPages: Int,
+        totalCustomers: Int
     }
 `

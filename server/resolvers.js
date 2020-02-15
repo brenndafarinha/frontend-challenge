@@ -1,25 +1,32 @@
 const { verifyCoordinates, capitalize, formatAddress } = require('./helpers')
 const axios = require('axios').default
 
-const baseURL = "https://storage.googleapis.com/juntossomosmais-code-challenge/input-frontend-apps.json"
+const baseURL = "https://jsm-challenges.s3.amazonaws.com/frontend-challenge.json"
 
 const resolvers = {
     Query: {
-        getCustomers: (_, { page, size, category }) => axios.get(baseURL).then(res => {
+        getCustomers: (_, { page, size, category, searchKey }) => axios.get(baseURL).then(res => {
             const initial = (size * page) - size
             const final = size * page
-            const customerResult = res.data.results.slice(initial, final)
-                .filter(customer => verifyCoordinates(customer.location.coordinates, category))
+            const customerCategoryResult = res.data.results.filter(customer => verifyCoordinates(customer.location.coordinates, category))
+            const customerCategoryResultPerPage = customerCategoryResult.slice(initial, final)
+
+            const customersResult = searchKey ? customerCategoryResultPerPage.filter(customer => {
+                const fullname = customer.name.first + customer.name.last
+                return fullname.toLowerCase().includes(searchKey.toLowerCase())
+            }) : customerCategoryResultPerPage
+
             return {
-                customers: customerResult,
-                totalPages: Math.ceil(res.data.results.length / size)
+                customers: customersResult,
+                totalPages: Math.ceil((searchKey ? customersResult.length : customerCategoryResult.length)/ size),
+                totalCustomers: searchKey ? customersResult.length : customerCategoryResult.length
             }
         })
     },
     Name: {
         fullname: (parent, _) => `${capitalize(parent.first)} ${capitalize(parent.last)}`
     },
-    Location:{
+    Location: {
         fullAddress: (parent, _) => formatAddress(parent)
     }
 }

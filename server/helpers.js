@@ -11,7 +11,6 @@ const isPointInLine = (coord, lineCoord) => {
 }
 
 const isPointInPolygon = (coord, polygonCoord) => {
-    console.log('coord inside func', coord)
     const point = turf.point([coord.latitude, coord.longitude])
     const polygon = turf.polygon([polygonCoord])
     return turf.booleanPointInPolygon(point, polygon)
