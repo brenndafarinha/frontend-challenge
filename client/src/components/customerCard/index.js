@@ -1,34 +1,30 @@
 import React from 'react'
-import { Card, Avatar, Skeleton } from 'antd'
+import { Card } from 'antd'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
+
+import "./style.css"
 
 const { Meta } = Card
 
-
-export default function CustomerCard(
-    {
-        name,
-        address,
-        photo,
-        loading
-
-    }
-) {
-
+function CustomerCard({
+    customer
+}) {
+    const history = useHistory()
     return (
         <Card
-            loading={loading}
+            onClick={() => history.push('/detail', customer)}
+            className="customer-card"
             hoverable
-            style={{ width: 220 }}
-            cover={photo ? <img alt="example" src={photo} /> : <Skeleton avatar/>}
+            cover={<img alt="example" src={customer.photo} />}
         >
-            <Meta title={name} description={address} />
+            <Meta title={customer.name} description={customer.address} />
         </Card>
     )
 }
 
 CustomerCard.propTypes = {
-    name: PropTypes.string.isRequired,
-    address: PropTypes.string.isRequired,
-    photo: PropTypes.string,
+    customer: PropTypes.object.isRequired
 }
+
+export default CustomerCard

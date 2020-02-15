@@ -1,0 +1,35 @@
+.detail-container {
+    width: 60%;
+    margin: 100px auto 40px auto;
+    min-height: 60vh;
+}
+
+.detail-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 50px;
+    
+}
+
+.info-profile{
+    width: 20%
+}
+
+.profile-image {
+    border-radius: 50%;
+    margin-bottom: 10px;
+    box-shadow: -1px 2px 5px 0px rgba(0,0,0,0.50);
+}
+
+
+.info {
+    text-align: left;
+    width: 80%;
+    margin-left: 20px;
+}
+
+.detail-bio{
+    text-align: left;
+}

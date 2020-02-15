@@ -1,9 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
-import './index.css'
-import App from './App'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks'
+
+import App from './App'
+
+import './index.css'
 
 const client = new ApolloClient({
     uri: 'http://localhost:4000/',
@@ -11,7 +13,7 @@ const client = new ApolloClient({
 
 const MainApp = () => (
     <ApolloProvider client={client}>
-        <App />
+        <App/>
     </ApolloProvider>
 )
 
