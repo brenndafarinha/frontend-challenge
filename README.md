@@ -1,0 +1,22 @@
+## Juntos somos mais - Frontend-challenge
+
+### Used libraries:
+
+- ReactJS
+- GraphQL
+- Apollo (Client e Sever)
+- Ant Design
+- React Router DOM
+- TurnJS
+
+### Project instructions
+
+To start the client aplication execute insides client diretory: 
+
+`yarn start`
+
+To start the server aplication execute insides server diretory: 
+
+`node server.js`
+
+API documentation on: http://localhost:4000/
