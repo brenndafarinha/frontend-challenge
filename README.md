@@ -13,9 +13,17 @@
 
 To start the client aplication execute insides client diretory: 
 
+`yarn install`
+
+then
+
 `yarn start`
 
 To start the server aplication execute insides server diretory: 
+
+`npm install`
+
+then
 
 `node server.js`
 
