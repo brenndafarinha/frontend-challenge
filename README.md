@@ -8,6 +8,7 @@
 - Ant Design
 - React Router DOM
 - TurnJS
+- Redux
 
 ### Project instructions
 
