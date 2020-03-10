@@ -1,8 +1,6 @@
 ## Frontend-challenge
 
-
-
-I made a simple server to wrap a rest api with GraphQL to make the client consume more easy and all the logic of filters e search too. 
+The goal was to list customers by their location with the given coordinates, and provide filters e an input to search a specific customer.
 
 ### Used libraries:
 
