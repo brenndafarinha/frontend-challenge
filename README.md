@@ -1,6 +1,6 @@
 ## Frontend-challenge
 
-The goal was to list customers by their location with the given coordinates, and provide filters e an input to search a specific customer.
+The goal was to list customers by their location with the given coordinates, provide filters and input to search a specific customer.
 
 ### Used libraries:
 
