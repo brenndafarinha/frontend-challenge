@@ -37,6 +37,10 @@ const verifyCoordinates = (coord, category) => {
         ]
     }
 
+    if(!category){
+        return true
+    }
+
     if (category == 'especial') {
         return isPointInPolygon(pointCoordinates, categoryCoordinates.especial)
     }

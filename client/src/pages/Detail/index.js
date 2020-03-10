@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
-import NavBar from '../../components/navbar'
 import { Descriptions, PageHeader } from 'antd'
 
 import './style.css'
@@ -13,7 +12,6 @@ export default function Detail() {
 
     return (
         <Fragment>
-            <NavBar />
             <div className="detail-container">
                 <PageHeader
                     onBack={() => history.push('/')}

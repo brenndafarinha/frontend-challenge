@@ -31,6 +31,7 @@ export default function MainTemplate(
                     value={categoryFilter || ""}
                     defaultValue={categoryFilter}
                 >
+                    <Radio style={{ marginLeft: 0 }} value=''>Todos</Radio>
                     <Radio style={{ marginLeft: 0 }} value='trabalhoso'>Trabalhoso</Radio>
                     <Radio siz style={{ marginLeft: 0 }} value='especial'>Especial</Radio>
                     <Radio style={{ marginLeft: 0 }} value='normal'>Normal</Radio>
@@ -39,8 +40,7 @@ export default function MainTemplate(
             <div className='main-content'>
                 {loading ? <Spin size="large" style={{ marginTop: 20 }} /> :
                     <div className="content">
-                        {error && handleBackendError()}
-                        {
+                        {error ? handleBackendError() :
                             customers.length ? customers.map((customer, idx) => {
                                 return (
                                     <CustomerCard
@@ -66,12 +66,13 @@ export default function MainTemplate(
                         }
                     </div>
                 }
-                {customers.length && !loading ?
-                    <Pagination
-                        style={{ marginTop: 10 }}
-                        total={totalCustomers}
-                        current={currentPage}
-                        onChange={page => onPageChange(page)} /> : null}
+                {
+                    customers.length && !loading ?
+                        <Pagination
+                            style={{ marginTop: 10 }}
+                            total={totalCustomers}
+                            current={currentPage}
+                            onChange={page => onPageChange(page)} /> : null}
             </div>
         </div>
     )

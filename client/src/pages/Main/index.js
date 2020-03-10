@@ -1,9 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { useLazyQuery, useApolloClient } from '@apollo/react-hooks'
 import { Result } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCustomerFilter } from '../../actions'
 import { gql } from 'apollo-boost'
 
-import NavBar from '../../components/navbar'
 import MainTemplate from './MainTemplate'
 
 const customerQuery = gql`
@@ -43,8 +44,10 @@ export default function Main() {
 
   const client = useApolloClient()
 
-  const [searchInput, setSearchInput] = useState('')
-  const [categoryFilter, setCategoryFilter] = useState("trabalhoso")
+  const customerFilter = useSelector(state => state.customerFilter)
+  const customerSearch = useSelector(state => state.customerSearch)
+  const dispatch = useDispatch()
+
   const [customers, setCustomers] = useState([])
   const [totalCustomers, setTotalCustomers] = useState(null)
   const [currentPage, setCurrentPage] = useState(1)
@@ -63,12 +66,12 @@ export default function Main() {
   useEffect(() =>
     getCustomers({
       variables:
-        { page: 1, size: 12, category: categoryFilter, searchKey: searchInput }
+        { page: 1, size: 12, category: customerFilter, searchKey: customerSearch }
     })
-    , [searchInput, categoryFilter, getCustomers])
+    , [customerSearch, customerFilter, getCustomers])
 
   const onPageChange = page => {
-    getCustomers({ variables: { page: page, size: 12, category: categoryFilter, searchKey: searchInput } })
+    getCustomers({ variables: { page: page, size: 12, category: customerFilter, searchKey: customerSearch } })
     setCurrentPage(page)
   }
 
@@ -77,6 +80,7 @@ export default function Main() {
       <Result
         status="500"
         title="500"
+        style={{ margin: "0 auto" }}
         subTitle="Houve um problema com o servidor, tente novamente."
       />
     )
@@ -84,13 +88,12 @@ export default function Main() {
 
   return (
     <Fragment>
-      <NavBar setSearchInput={setSearchInput} />
       <MainTemplate
         customers={customers}
         error={error}
         loading={loading}
-        categoryFilter={categoryFilter}
-        setCategoryFilter={setCategoryFilter}
+        categoryFilter={customerFilter}
+        setCategoryFilter={value => dispatch(setCustomerFilter(value))}
         totalCustomers={totalCustomers}
         handleBackendError={handleBackendError}
         onPageChange={onPageChange}

@@ -1,27 +1,23 @@
 import React from 'react'
-import logo from '../../images/logo.svg'
-import PropTypes from 'prop-types'
 import { Input, Button } from 'antd'
-
+import { useDispatch } from 'react-redux'
+import { setCustomerSearch } from '../../actions'
 import './style.css'
 
 const { Search } = Input
 
-export default function NavBar(
-    {
-        setSearchInput
-    }
-) {
+export default function NavBar() {
+
+    const dispatch = useDispatch()
 
     return (
         <div className="navbar-container">
-            <img alt="Juntos Somos Mais logo" src={logo} />
-            {setSearchInput ? <Search
+            <Search
                 placeholder="Buscar aqui"
-                onSearch={value => setSearchInput(value)}
+                onSearch={value => dispatch(setCustomerSearch(value))}
                 className='search-input'
-                
-            /> : null}
+
+            />
             <div>
                 <Button type="dashed">Cadastre-se</Button>
                 <Button>Entrar</Button>
@@ -30,6 +26,3 @@ export default function NavBar(
     )
 }
 
-NavBar.propTypes = {
-    setSearchInput: PropTypes.func
-}
