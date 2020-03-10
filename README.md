@@ -1,4 +1,4 @@
-## Juntos somos mais - Frontend-challenge
+## Frontend-challenge
 
 ### Used libraries:
 
