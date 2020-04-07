@@ -1,4 +1,4 @@
-## Frontend-challenge
+## Lists customers by their location
 
 The goal was to list customers by their location with the given coordinates, provide filters and input to search a specific customer.
 
@@ -14,7 +14,7 @@ The goal was to list customers by their location with the given coordinates, pro
 
 ### Project instructions
 
-To start the client aplication execute insides client diretory: 
+To start the client aplication execute insides client directory: 
 
 `yarn install`
 
